@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Activity Data Entry</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6f8fb;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      background: #fff;
+      margin: auto;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+    label {
+      font-weight: bold;
+      font-size: 14px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    textarea {
+      resize: vertical;
+    }
+    button {
+      background: #0066ff;
+      color: white;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #004bcc;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Activity Conduction Data Entry</h2>
+
+    <form id="activityForm">
+      
+      <div class="row">
+        <div>
+          <label>Activity Conducted</label>
+          <select name="activity" required>
+            <option value="">Select</option>
+            <option>Workshop</option>
+            <option>Seminar</option>
+            <option>Training</option>
+            <option>Awareness Program</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Theme / Topic</label>
+          <input type="text" name="theme" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label>Zone</label>
+          <select name="zone" required>
+            <option value="">Select</option>
+            <option>North</option>
+            <option>South</option>
+            <option>East</option>
+            <option>West</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Branch</label>
+          <input type="text" name="branch" required>
+        </div>
+
+        <div>
+          <label>TL</label>
+          <input type="text" name="tl">
+        </div>
+
+        <div>
+          <label>RST</label>
+          <input type="text" name="rst">
+        </div>
+
+        <div>
+          <label>SST</label>
+          <input type="text" name="sst">
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label>Emp ID</label>
+          <input type="text" name="empid" required>
+        </div>
+
+        <div>
+          <label>Email Address</label>
+          <input type="email" name="email" required>
+        </div>
+
+        <div>
+          <label>Conduction Date</label>
+          <input type="date" name="date" required>
+        </div>
+
+        <div>
+          <label>Grade</label>
+          <select name="grade">
+            <option>1</option><option>2</option><option>3</option>
+            <option>4</option><option>5</option><option>6</option>
+            <option>7</option><option>8</option>
+            <option>9</option><option>10</option>
+            <option>11</option><option>12</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label>No. of Students Participated</label>
+          <input type="number" name="count">
+        </div>
+
+        <div>
+          <label>Students Names</label>
+          <textarea name="students"></textarea>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label>Participants (Optional)</label>
+          <textarea name="participants" placeholder="Comma separated names"></textarea>
+        </div>
+      </div>
+
+      <button type="submit">Submit Data</button>
+    </form>
+  </div>
+
+<script>
+const scriptURL = "PASTE_YOUR_SCRIPT_WEBAPP_URL";
+
+document.getElementById("activityForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const form = new FormData(e.target);
+
+  fetch(scriptURL, { method: "POST", body: form })
+    .then(() => {
+      alert("Data submitted successfully!");
+      e.target.reset();
+    })
+    .catch(err => alert("Error: " + err));
+});
+</script>
+
+</body>
+</html>
